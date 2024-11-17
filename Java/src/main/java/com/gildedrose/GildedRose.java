@@ -24,6 +24,22 @@ class GildedRose {
         return item.name.equals(BackstagePasses);
     }
     
+    private void IncreaseQuality(Item item) {
+        if (item.quality < MaximumQuality) {
+            item.quality++;
+        }
+    }
+
+    private void DecreaseQuality(Item item) {
+        if (item.quality > 0) {
+            item.quality--;
+        }
+    }
+
+    private void DecreaseSellIn(Item item) {
+        item.sellin--;
+    }
+    
     public void updateQuality() {
         for (int i = 0; i < items.length; i++) {
             if (!items[i].name.equals("Aged Brie")
