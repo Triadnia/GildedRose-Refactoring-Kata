@@ -39,6 +39,33 @@ class GildedRose {
     private void DecreaseSellIn(Item item) {
         item.sellin--;
     }
+
+    public void updateQuality() {
+        for (int i =0; i < items.length; i++) {
+            UpdateItemQuality(items[i]);
+        }
+    }
+
+    private void UpdateItemQuality(Item item) {
+        if(SulfurasB(item)) {
+            return
+        }
+        DecreaseSellIn(item);
+        QualityType(item);
+    }
+
+    private void QualityType(Item item) {
+        if (AgedBrieB(item)) {
+            updateAgedBrieQua(item);
+            return;
+        }
+
+        if (BackstagePassesB(item)) {
+            updateBackPassQua(item);
+            return;
+        }
+        
+    }
     
     public void updateQuality() {
         for (int i = 0; i < items.length; i++) {
