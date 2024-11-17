@@ -65,6 +65,14 @@ class GildedRose {
             return;
         }
         
+        RegularQA(item);
+    }
+
+    private void RegularQA(Item item) {
+        DecreaseQuality(item);
+        if (item.sellin < 0) {
+            DecreaseQuality(item);
+        }
     }
     
     public void updateQuality() {
