@@ -14,64 +14,71 @@ class GildedRose {
         this.items = items;
     }
 
-    private boolean SulfurasB(Item item) {
+    private boolean sulfurasB(Item item) {
         return item.name.equals(Sulfuras);
     }
-    private boolean AgedBrieB(Item item) {
+    private boolean agedBrieB(Item item) {
         return item.name.equals(AgedBrie);
     }
-    private boolean BackstagePassesB(Item item) {
+    private boolean backstagePassesB(Item item) {
         return item.name.equals(BackstagePasses);
     }
     
-    private void IncreaseQuality(Item item) {
+    private void increaseQuality(Item item) {
         if (item.quality < MaximumQuality) {
             item.quality++;
         }
     }
 
-    private void DecreaseQuality(Item item) {
+    private void decreaseQuality(Item item) {
         if (item.quality > 0) {
             item.quality--;
         }
     }
 
-    private void DecreaseSellIn(Item item) {
+    private void decreaseSellIn(Item item) {
         item.sellin--;
     }
 
     public void updateQuality() {
         for (int i =0; i < items.length; i++) {
-            UpdateItemQuality(items[i]);
+            updateItemQuality(items[i]);
         }
     }
 
-    private void UpdateItemQuality(Item item) {
-        if(SulfurasB(item)) {
+    private void updateItemQuality(Item item) {
+        if(sulfurasB(item)) {
             return
         }
-        DecreaseSellIn(item);
-        QualityType(item);
+        decreaseSellIn(item);
+        qualityType(item);
     }
 
-    private void QualityType(Item item) {
-        if (AgedBrieB(item)) {
+    private void qualityType(Item item) {
+        if (agedBrieB(item)) {
             updateAgedBrieQua(item);
             return;
         }
 
-        if (BackstagePassesB(item)) {
+        if (backstagePassesB(item)) {
             updateBackPassQua(item);
             return;
         }
         
-        RegularQA(item);
+        regularQA(item);
     }
 
-    private void RegularQA(Item item) {
-        DecreaseQuality(item);
+    private void regularQA(Item item) {
+        decreaseQuality(item);
         if (item.sellin < 0) {
-            DecreaseQuality(item);
+            decreaseQuality(item);
+        }
+    }
+
+    private void updateAgedBrieQua(Item item) {
+        increaseQuality(item);
+        if(item.sellin < 0) {
+            increaseQuality(item);
         }
     }
     
